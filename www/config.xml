@@ -25,5 +25,9 @@
     <preference name="orientation" value="portait" />
     <access origin="*" />
     
+    <gap:plugin name="org.apache.cordova.dialogs" version="3.0.0" />
+    <gap:plugin name="org.apache.cordova.camera" version="0.2.9" />
+    <gap:plugin name="com.plugin.datepicker" version="0.3.2" />
+
     <icon src="icon.png" />
 </widget>
