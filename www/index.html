@@ -1,40 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Organizzy</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
+    <meta charset="utf-8">
+    <title>Organizzy Mobile</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link href="css/lib.css" rel="stylesheet">
     <style>
+        * {margin: 0}
+        html, body {height: 100%}
         #page-loading {
             background-color: #FF851B;
             color: #ffffff;
             font-family: sans;
+
         }
         #page-loading #loading {
-            margin: 50px 0 0 0;
             font-size: 1.2em;
             font-weight: bold;
             text-align: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        #page-loading #loading .logo {
+            width: 85%;
+            max-width: 500px;
+        }
+
+        #page-loading #loading .fa {
+            font-size: 30px;
+            -webkit-animation-duration: 1.5s;
         }
     </style>
-    <script>
-        var serverBase = 'http://organizzy.herokuapp.com';
-    </script>
+
+    
 </head>
 <body id="page-loading">
-    <div id="loading">
-        Loading
-    </div>
-    
+<table id="loading">
+    <tr><td>
+        <img src="images/logo.png" class="logo" /><br />
+        <i class="fa fa-refresh fa-spin"></i>
+    </td></tr>
+</table>
+
+<script src="cordova.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
-    setTimeout(function(doc){
-        location.replace(serverBase + '/');
-    }, 500);
+jQuery(function($){
+    var serverBase = 'http://m.organizzy.org';
+    window.O = {
+        clientVersion: 000501, // 0.5.1
+    };
+
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = serverBase + '/css/style.css';
+
+    var script = document.createElement('script');
+    //script.differ = true;
+    script.onload = function(){
+        O.init(serverBase);
+        console.log(this);
+    };
+    script.src = serverBase + '/js/app.js';
+
+    var head = $('head')[0];
+    head.appendChild(css);
+    head.appendChild(script);
+});
+
 </script>
 </body>
 </html>
-
